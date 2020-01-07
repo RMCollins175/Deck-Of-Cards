@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Card from "./Card";
 import Axios from "axios";
+import './helpers'
+import { altImage } from "./helpers";
 
 class Deck extends Component {
   constructor(props) {
     super(props);
-    this.state = { deckID: "", card: "", deck: [] };
+    this.state = { deckID: "", card: ""};
+    this.addCard = this.addCard.bind(this)
+    this.getCardFace = this.getCardFace.bind(this)
   }
 
 async componentDidMount(){
@@ -17,17 +21,29 @@ async componentDidMount(){
     let cardFace = drawResponse.data.cards[0].image
     console.group(cardFace)
     this.setState({deckID: deckID, card: cardFace})
+    console.log(this.state.card)
+}
+
+addCard() {
+    let drawResponse = Axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckID}/draw/?count=1`)
+    console.log(drawResponse)
+    // let cardFace = drawResponse.data.cards[0].image
+    // this.setState({card: cardFace})
+}
+
+getCardFace(card) {
+    return altImage(card)
 }
 
   render() {
     return (
       <div>
         <h1>Deck Of Cards Game</h1>
-        <button>New Card</button>
+        <button onClick={this.addCard}>New Card</button>
         <div>
           <Card 
           cardFace={this.state.card}
-
+          getCardFace={this.getCardFace(this.state.card)}
           />
         </div>
       </div>
