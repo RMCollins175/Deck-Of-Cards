@@ -50,7 +50,7 @@ class Deck extends Component {
         drawn: [
           ...st.drawn,
           {
-            id: id,
+            id: card.id,
             image: card.image,
             name: `${card.value} of ${card.suit}`,
             remaining: drawResponse.data.remaining
@@ -80,10 +80,10 @@ class Deck extends Component {
   render() {
     const cards = this.state.drawn.map(c => (
       <Card
+        key={c.id}
         card={c.image}
         name={c.name}
         cardsRemaining={c.remaining}
-        key={c.id}
       />
     ));
 
