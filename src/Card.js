@@ -1,26 +1,21 @@
 import React, { Component } from "react";
+import "./Card.css";
 
 class Card extends Component {
-  constructor(props) {
-    super(props);
-    this.handleNewDeck = this.handleNewDeck.bind(this);
-  }
-
-  handleNewDeck() {
-    window.location.reload();
-  }
-
   render() {
+
+    let angle = Math.random() * 90 - 45
+    let xPosition = Math.random() * 40 - 20
+    let yPosition = Math.random() * 40 - 20
+    let transform = `translate(${xPosition}px, ${yPosition}px) rotate(${angle}deg)`
     return (
-      <div>
-        <div className="Card">
-          <img src={this.props.cardFace} alt={this.props.getCardFace} ></img>
-        </div>
-        <p>Cards remaining: {this.props.cardsRemaining} </p>
-        <button onClick={this.handleNewDeck}>New Deck</button>
+      <div className="Card">
+          <img style={{transform: transform}} src={this.props.card} alt={this.props.name}></img>
       </div>
     );
   }
 }
 
 export default Card;
+
+
