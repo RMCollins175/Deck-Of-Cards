@@ -89,7 +89,7 @@ class Deck extends Component {
 
     return (
       <div className="Deck-Container">
-        <h1>Deck Of Cards Game</h1>
+        <h1 className="Deck-title">Deck Of Cards Game</h1>
         <button onClick={this.getCard} disabled={this.state.newCardEnabled}>
           New Card
         </button>
