@@ -17,3 +17,8 @@ button {
     margin-right: 10px;
 
 }
+
+.Deck-Container {
+    font-family: "Slabo 25px", serif;
+    text-transform: uppercase;
+}
